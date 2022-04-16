@@ -2,7 +2,8 @@ import React from "react";
 import Map, { Source, Layer } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-const Maps = ({ data }) => {
+const Maps = ({ data, onHover }) => {
+  console.log(data);
   const dataLayer = {
     id: "room-extrusion",
     type: "fill-extrusion",
@@ -28,6 +29,7 @@ const Maps = ({ data }) => {
       style={{ width: "100vw", height: "91vh" }}
       mapStyle="mapbox://styles/mapbox/streets-v9"
       mapboxAccessToken="pk.eyJ1IjoianVzdGlubm4wNyIsImEiOiJja2hjOHh2amowNW9kMnVub3VmcmVja210In0.9Yf8r2YIHGiBnrtBGN-LkA"
+      onMouseMove={onHover}
     >
       <Source type="geojson" data={data}>
         <Layer {...dataLayer} />
