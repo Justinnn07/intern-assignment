@@ -57,14 +57,17 @@ const Header = ({ selectData, setSelectData, floor, setFloor }) => {
               value={selectData}
               onChange={(e) => setSelectData(e.target.value)}
             >
-              <MenuItem value="Heat Map">Heat Map</MenuItem>
-              <MenuItem value="3D Indoor">3D Indoor</MenuItem>
+              <MenuItem value="Dataset 1">Dataset 1</MenuItem>
+              <MenuItem value="Dataset 2">Dataset 2</MenuItem>
             </Select>
             <Select
               style={{ width: 300 }}
               value={floor}
               onChange={(e) => setFloor(e.target.value)}
-            ></Select>
+            >
+              <MenuItem value="Heat Map">Heat Map</MenuItem>
+              <MenuItem value="3D Indoor">3D Indoor</MenuItem>
+            </Select>
           </RightContainer>
         </Toolbar>
       </AppBar>
