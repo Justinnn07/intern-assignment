@@ -74,6 +74,8 @@ const Header = ({
                     longitude: -87.61694,
                     latitude: 41.86625,
                     zoom: 17,
+                    bearing: 20,
+                    pitch: 40,
                     antialias: true,
                   });
                 } else if (e.target.value === "Dataset 2") {
@@ -91,8 +93,8 @@ const Header = ({
                 setSelectData(e.target.value);
               }}
             >
-              <MenuItem value="Dataset 1">Dataset 1</MenuItem>
-              <MenuItem value="Dataset 2">Dataset 2</MenuItem>
+              <MenuItem value="Dataset 1">Dataset 1 - Building</MenuItem>
+              <MenuItem value="Dataset 2">Dataset 2 - Earthquake</MenuItem>
             </Select>
             <Select
               style={{ width: 300 }}

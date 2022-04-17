@@ -1,6 +1,5 @@
 import React from "react";
 import Map, { Source, Layer } from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
 import { heatMapLayer, dataLayer } from "../../data/mapLayers";
 
 const Maps = ({ data, type, initialViewState, onMove }) => {
@@ -10,6 +9,8 @@ const Maps = ({ data, type, initialViewState, onMove }) => {
       initialViewState={initialViewState}
       latitude={initialViewState?.latitude}
       longitude={initialViewState?.longitude}
+      pitch={initialViewState?.pitch}
+      bearing={initialViewState?.bearing}
       style={{ width: "100vw", height: "92vh" }}
       zoom={initialViewState.zoom}
       mapStyle="mapbox://styles/mapbox/streets-v11"
