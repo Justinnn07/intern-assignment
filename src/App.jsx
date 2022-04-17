@@ -7,8 +7,6 @@ const App = () => {
   const [selectData, setSelectData] = useState("Select Data");
   const [floor, setFloor] = useState("Select Floor");
 
-  console.log(selectData);
-
   useEffect(() => {
     fetch("https://docs.mapbox.com/mapbox-gl-js/assets/indoor-3d-map.geojson")
       .then((res) => res.json())
