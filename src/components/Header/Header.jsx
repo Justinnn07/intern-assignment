@@ -29,7 +29,7 @@ const RightContainer = styled("div")(({ theme }) => ({
   },
 }));
 
-const Header = ({ selectData, setSelectData, floor, setFloor }) => {
+const Header = ({ selectData, setSelectData, floor, setFloor, onMove }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky" elevation={1} color="transparent">
@@ -55,7 +55,28 @@ const Header = ({ selectData, setSelectData, floor, setFloor }) => {
             <Select
               style={{ width: 300 }}
               value={selectData}
-              onChange={(e) => setSelectData(e.target.value)}
+              onChange={(e) => {
+                if (e.target.value === "Dataset 1") {
+                  onMove({
+                    longitude: -87.61694,
+                    latitude: 41.86625,
+                    zoom: 17,
+                    pitch: 40,
+                    bearing: 20,
+                    antialias: true,
+                  });
+                } else if (e.target.value === "Dataset 2") {
+                  onMove({
+                    longitude: 77.336293,
+                    latitude: 28.6115171,
+                    zoom: 17,
+                    pitch: 40,
+                    bearing: 20,
+                    antialias: true,
+                  });
+                }
+                setSelectData(e.target.value);
+              }}
             >
               <MenuItem value="Dataset 1">Dataset 1</MenuItem>
               <MenuItem value="Dataset 2">Dataset 2</MenuItem>

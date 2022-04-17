@@ -27,6 +27,7 @@ const App = () => {
         floor={floor}
         setFloor={setFloor}
         selectData={selectData}
+        onMove={setViews}
         setSelectData={setSelectData}
       />
       <Maps
@@ -34,6 +35,7 @@ const App = () => {
         type={floor}
         dataset={selectData}
         initialViewState={views}
+        onMove={setViews}
       />
     </div>
   );
