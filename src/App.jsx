@@ -4,7 +4,7 @@ import Maps from "./components/Map/Map";
 
 const App = () => {
   const [cordinates, setCordinates] = useState(null);
-  const [selectData, setSelectData] = useState("Select Data");
+  const [selectData, setSelectData] = useState("Heat Map");
   const [floor, setFloor] = useState("Select Floor");
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const App = () => {
         selectData={selectData}
         setSelectData={setSelectData}
       />
-      <Maps data={cordinates} />
+      <Maps data={cordinates} type={selectData} />
     </div>
   );
 };
