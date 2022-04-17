@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getFirstDataSetCordinates } from "./actions/actions";
 import Header from "./components/Header/Header";
 import Maps from "./components/Map/Map";
 
@@ -16,9 +17,7 @@ const App = () => {
   });
 
   useEffect(() => {
-    fetch("https://docs.mapbox.com/mapbox-gl-js/assets/indoor-3d-map.geojson")
-      .then((res) => res.json())
-      .then((data) => setCordinates(data));
+    getFirstDataSetCordinates(setCordinates);
   }, []);
 
   return (
@@ -29,6 +28,7 @@ const App = () => {
         selectData={selectData}
         onMove={setViews}
         setSelectData={setSelectData}
+        setCordinates={setCordinates}
       />
       <Maps
         data={cordinates}

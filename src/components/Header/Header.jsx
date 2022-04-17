@@ -10,6 +10,10 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import {
+  getFirstDataSetCordinates,
+  secondDataSetCordinates,
+} from "../../actions/actions";
 
 const RightContainer = styled("div")(({ theme }) => ({
   position: "relative",
@@ -29,7 +33,14 @@ const RightContainer = styled("div")(({ theme }) => ({
   },
 }));
 
-const Header = ({ selectData, setSelectData, floor, setFloor, onMove }) => {
+const Header = ({
+  selectData,
+  setSelectData,
+  floor,
+  setFloor,
+  onMove,
+  setCordinates,
+}) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky" elevation={1} color="transparent">
@@ -57,21 +68,23 @@ const Header = ({ selectData, setSelectData, floor, setFloor, onMove }) => {
               value={selectData}
               onChange={(e) => {
                 if (e.target.value === "Dataset 1") {
+                  setFloor("Heat Map");
+                  getFirstDataSetCordinates(setCordinates);
                   onMove({
                     longitude: -87.61694,
                     latitude: 41.86625,
                     zoom: 17,
-                    pitch: 40,
-                    bearing: 20,
                     antialias: true,
                   });
                 } else if (e.target.value === "Dataset 2") {
+                  setFloor("Heat Map");
+                  secondDataSetCordinates(setCordinates);
                   onMove({
-                    longitude: 77.336293,
-                    latitude: 28.6115171,
-                    zoom: 17,
-                    pitch: 40,
-                    bearing: 20,
+                    longitude: -120,
+                    latitude: 50,
+                    zoom: 0,
+                    pitch: 0,
+                    bearing: 0,
                     antialias: true,
                   });
                 }
@@ -87,7 +100,24 @@ const Header = ({ selectData, setSelectData, floor, setFloor, onMove }) => {
               onChange={(e) => setFloor(e.target.value)}
             >
               <MenuItem value="Heat Map">Heat Map</MenuItem>
-              <MenuItem value="3D Indoor">3D Indoor</MenuItem>
+              {selectData === "Dataset 2" && (
+                <MenuItem value="3D Indoor" disabled>
+                  3D Indoor
+                </MenuItem>
+              )}
+              {selectData === "Dataset 1" && (
+                <MenuItem value="3D Indoor">3D Indoor</MenuItem>
+              )}
+              {selectData === "Dataset 2" && (
+                <MenuItem value="Both- Heat Map and 3D Indoor" disabled>
+                  Both- Heat Map and 3D Indoor
+                </MenuItem>
+              )}
+              {selectData === "Dataset 1" && (
+                <MenuItem value="Both- Heat Map and 3D Indoor">
+                  Both- Heat Map and 3D Indoor
+                </MenuItem>
+              )}
             </Select>
           </RightContainer>
         </Toolbar>
