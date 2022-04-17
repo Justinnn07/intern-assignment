@@ -26,7 +26,7 @@ const RightContainer = styled("div")(({ theme }) => ({
   },
 }));
 
-export default function Header() {
+const Header = ({ selectData, setSelectData, floor, setFloor }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky" elevation={1} color="transparent">
@@ -49,13 +49,25 @@ export default function Header() {
             Assignment
           </Typography>
           <RightContainer>
-            <Select style={{ width: 300 }}>
-              <MenuItem value={10}>Ten</MenuItem>
+            <Select
+              style={{ width: 300 }}
+              value={selectData}
+              onChange={(e) => setSelectData(e.target.value)}
+            >
+              <MenuItem value="Select Data" disabled>
+                Select Data
+              </MenuItem>
               <MenuItem value={20}>Twenty</MenuItem>
               <MenuItem value={30}>Thirty</MenuItem>
             </Select>
-            <Select style={{ width: 300 }}>
-              <MenuItem value={10}>Ten</MenuItem>
+            <Select
+              style={{ width: 300 }}
+              value={floor}
+              onChange={(e) => setFloor(e.target.value)}
+            >
+              <MenuItem value="Select Floor" disabled>
+                Select Floor
+              </MenuItem>
               <MenuItem value={20}>Twenty</MenuItem>
               <MenuItem value={30}>Thirty</MenuItem>
             </Select>
@@ -64,4 +76,6 @@ export default function Header() {
       </AppBar>
     </Box>
   );
-}
+};
+
+export default Header;

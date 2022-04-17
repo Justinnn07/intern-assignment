@@ -4,8 +4,10 @@ import Maps from "./components/Map/Map";
 
 const App = () => {
   const [cordinates, setCordinates] = useState(null);
-  const [hoverInfo, setHoverInfo] = useState(null);
-  console.log(hoverInfo);
+  const [selectData, setSelectData] = useState("Select Data");
+  const [floor, setFloor] = useState("Select Floor");
+
+  console.log(selectData);
 
   useEffect(() => {
     fetch("https://docs.mapbox.com/mapbox-gl-js/assets/indoor-3d-map.geojson")
@@ -13,21 +15,15 @@ const App = () => {
       .then((data) => setCordinates(data));
   }, []);
 
-  const onHover = useCallback((event) => {
-    const {
-      features,
-      point: { x, y },
-    } = event;
-    const hoveredFeature = cordinates && cordinates[0];
-
-    // prettier-ignore
-    setHoverInfo(hoveredFeature && {feature: hoveredFeature, x, y});
-  }, []);
-
   return (
     <div>
-      <Header />
-      <Maps data={cordinates} onHover={onHover} />
+      <Header
+        floor={floor}
+        setFloor={setFloor}
+        selectData={selectData}
+        setSelectData={setSelectData}
+      />
+      <Maps data={cordinates} />
     </div>
   );
 };
