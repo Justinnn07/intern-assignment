@@ -6,7 +6,6 @@ const Maps = ({ data, type, initialViewState, onMove }) => {
   return (
     <Map
       onMove={(e) => onMove(e.viewState)}
-      initialViewState={initialViewState}
       latitude={initialViewState?.latitude}
       longitude={initialViewState?.longitude}
       pitch={initialViewState?.pitch}
