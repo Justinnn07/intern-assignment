@@ -3,9 +3,9 @@ import { getFirstDataSetCordinates } from "./actions/actions";
 import Header from "./components/Header/Header";
 import Maps from "./components/Map/Map";
 import { getDataLayer } from "./hooks/Hooks";
-import staticData from "./staticData/staticData.json";
+import staticData from "./staticData/staticData";
 const App = () => {
-  const [cordinates, setCordinates] = useState(staticData);
+  const [cordinates, setCordinates] = useState(null);
   const [selectData, setSelectData] = useState("Dataset 1");
   const [floor, setFloor] = useState("Heat Map");
   const [views, setViews] = useState({
