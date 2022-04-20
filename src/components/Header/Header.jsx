@@ -10,11 +10,9 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import {
-  getFirstDataSetCordinates,
-  secondDataSetCordinates,
-} from "../../actions/actions";
-
+import { secondDataSetCordinates } from "../../actions/actions";
+import staticData from "../../../staticData/staticData.json";
+import { dataSet1Settings, dataSet2Settings } from "../../utils/utils";
 const RightContainer = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -68,30 +66,12 @@ const Header = ({
               style={{ width: 300 }}
               value={selectData}
               onChange={(e) => {
-                if (e.target.value === "Dataset 1") {
-                  setFloor("Heat Map");
-                  getFirstDataSetCordinates(setCordinates, setLoading);
-                  onMove({
-                    longitude: -87.61694,
-                    latitude: 41.86625,
-                    zoom: 17,
-                    pitch: 40,
-                    bearing: 20,
-                    antialias: true,
-                  });
-                } else if (e.target.value === "Dataset 2") {
-                  setFloor("Heat Map");
-                  secondDataSetCordinates(setCordinates, setLoading);
-                  onMove({
-                    longitude: -120,
-                    latitude: 50,
-                    zoom: 0,
-                    pitch: 0,
-                    bearing: 0,
-                    antialias: true,
-                  });
-                }
                 setSelectData(e.target.value);
+                if (e.target.value === "Dataset 1") {
+                  dataSet1Settings(setFloor, onMove, setCordinates, setLoading);
+                } else if (e.target.value === "Dataset 2") {
+                  dataSet2Settings(setFloor, onMove, setCordinates, setLoading);
+                }
               }}
             >
               <MenuItem value="Dataset 1">Dataset 1 - Building</MenuItem>

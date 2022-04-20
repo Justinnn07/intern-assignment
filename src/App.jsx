@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getFirstDataSetCordinates } from "./actions/actions";
 import Header from "./components/Header/Header";
 import Maps from "./components/Map/Map";
 import { getDataLayer } from "./hooks/Hooks";
-import staticData from "./staticData/staticData";
+import cordinateData from "../staticData/staticData.json";
 const App = () => {
-  const [cordinates, setCordinates] = useState(null);
+  const [cordinates, setCordinates] = useState(cordinateData);
   const [selectData, setSelectData] = useState("Dataset 1");
   const [floor, setFloor] = useState("Heat Map");
   const [views, setViews] = useState({
@@ -19,10 +18,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const dataLayerType = getDataLayer(floor);
 
-  useEffect(() => {
-    getFirstDataSetCordinates(setCordinates, setLoading);
-  }, []);
-
+  console.log(loading);
   return (
     <div>
       <Header

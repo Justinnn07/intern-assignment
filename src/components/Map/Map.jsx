@@ -24,32 +24,32 @@ const Maps = ({
         <CircularProgress />
       </Box>
     );
+  } else {
+    return (
+      <Map
+        onMove={(e) => onMove(e.viewState)}
+        latitude={initialViewState?.latitude}
+        longitude={initialViewState?.longitude}
+        pitch={initialViewState?.pitch}
+        bearing={initialViewState?.bearing}
+        style={{ width: "100vw", height: "92vh" }}
+        zoom={initialViewState.zoom}
+        mapStyle="mapbox://styles/mapbox/streets-v11"
+        mapboxAccessToken="pk.eyJ1IjoianVzdGlubm4wNyIsImEiOiJja2hjOHh2amowNW9kMnVub3VmcmVja210In0.9Yf8r2YIHGiBnrtBGN-LkA"
+      >
+        <Source type="geojson" data={data}>
+          {type === "Heat Map" && <Layer {...dataLayerType.data} />}
+          {type === "3D Indoor" && <Layer {...dataLayerType.data} />}
+          {type === "Both- Heat Map and 3D Indoor" && (
+            <Layer {...dataLayerType.data} />
+          )}
+          {type === "Both- Heat Map and 3D Indoor" && (
+            <Layer {...dataLayerType.both} />
+          )}
+        </Source>
+      </Map>
+    );
   }
-
-  return (
-    <Map
-      onMove={(e) => onMove(e.viewState)}
-      latitude={initialViewState?.latitude}
-      longitude={initialViewState?.longitude}
-      pitch={initialViewState?.pitch}
-      bearing={initialViewState?.bearing}
-      style={{ width: "100vw", height: "92vh" }}
-      zoom={initialViewState.zoom}
-      mapStyle="mapbox://styles/mapbox/streets-v11"
-      mapboxAccessToken="pk.eyJ1IjoianVzdGlubm4wNyIsImEiOiJja2hjOHh2amowNW9kMnVub3VmcmVja210In0.9Yf8r2YIHGiBnrtBGN-LkA"
-    >
-      <Source type="geojson" data={data}>
-        {type === "Heat Map" && <Layer {...dataLayerType.data} />}
-        {type === "3D Indoor" && <Layer {...dataLayerType.data} />}
-        {type === "Both- Heat Map and 3D Indoor" && (
-          <Layer {...dataLayerType.data} />
-        )}
-        {type === "Both- Heat Map and 3D Indoor" && (
-          <Layer {...dataLayerType.both} />
-        )}
-      </Source>
-    </Map>
-  );
 };
 
 export default Maps;
