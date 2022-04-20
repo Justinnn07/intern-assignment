@@ -40,6 +40,7 @@ const Header = ({
   setFloor,
   onMove,
   setCordinates,
+  setLoading,
 }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -69,18 +70,18 @@ const Header = ({
               onChange={(e) => {
                 if (e.target.value === "Dataset 1") {
                   setFloor("Heat Map");
-                  getFirstDataSetCordinates(setCordinates);
+                  getFirstDataSetCordinates(setCordinates, setLoading);
                   onMove({
                     longitude: -87.61694,
                     latitude: 41.86625,
                     zoom: 17,
-                    bearing: 20,
                     pitch: 40,
+                    bearing: 20,
                     antialias: true,
                   });
                 } else if (e.target.value === "Dataset 2") {
                   setFloor("Heat Map");
-                  secondDataSetCordinates(setCordinates);
+                  secondDataSetCordinates(setCordinates, setLoading);
                   onMove({
                     longitude: -120,
                     latitude: 50,

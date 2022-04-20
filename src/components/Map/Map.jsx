@@ -1,8 +1,31 @@
+import { CircularProgress } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 import Map, { Source, Layer } from "react-map-gl";
-import { heatMapLayer, dataLayer } from "../../data/mapLayers";
 
-const Maps = ({ data, type, initialViewState, onMove }) => {
+const Maps = ({
+  data,
+  type,
+  initialViewState,
+  onMove,
+  loading,
+  dataLayerType,
+}) => {
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "80vh",
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
+
   return (
     <Map
       onMove={(e) => onMove(e.viewState)}
@@ -16,10 +39,14 @@ const Maps = ({ data, type, initialViewState, onMove }) => {
       mapboxAccessToken="pk.eyJ1IjoianVzdGlubm4wNyIsImEiOiJja2hjOHh2amowNW9kMnVub3VmcmVja210In0.9Yf8r2YIHGiBnrtBGN-LkA"
     >
       <Source type="geojson" data={data}>
-        {type === "Heat Map" && <Layer {...heatMapLayer} />}
-        {type === "3D Indoor" && <Layer {...dataLayer} />}
-        {type === "Both- Heat Map and 3D Indoor" && <Layer {...heatMapLayer} />}
-        {type === "Both- Heat Map and 3D Indoor" && <Layer {...dataLayer} />}
+        {type === "Heat Map" && <Layer {...dataLayerType.data} />}
+        {type === "3D Indoor" && <Layer {...dataLayerType.data} />}
+        {type === "Both- Heat Map and 3D Indoor" && (
+          <Layer {...dataLayerType.data} />
+        )}
+        {type === "Both- Heat Map and 3D Indoor" && (
+          <Layer {...dataLayerType.both} />
+        )}
       </Source>
     </Map>
   );
