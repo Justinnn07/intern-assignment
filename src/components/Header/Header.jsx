@@ -10,8 +10,6 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { secondDataSetCordinates } from "../../actions/actions";
-import staticData from "../../../staticData/staticData.json";
 import { dataSet1Settings, dataSet2Settings } from "../../utils/utils";
 const RightContainer = styled("div")(({ theme }) => ({
   position: "relative",
