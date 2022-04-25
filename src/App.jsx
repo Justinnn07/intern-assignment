@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import Maps from "./components/Map/Map";
 import { getDataLayer } from "./hooks/Hooks";
